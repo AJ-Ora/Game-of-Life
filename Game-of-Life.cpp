@@ -5,30 +5,56 @@
 #include <thread>
 #include <chrono>
 
+#include "wx/wx.h"
+
 #include "source/LifeBoard.h"
 #include "source/LifeBoardLogic.h"
 
 void printDebugLoop(LifeBoard& board);
 
-int main(int argc, char* argv[])
+class golMain : public wxApp
 {
-	LifeBoard board;
+public:
+	virtual bool OnInit();
+};
 
-	if (argc == 2)
-	{
-		board.ImportImage(argv[1]);
-	}
+class golFrame : public wxFrame
+{
+public:
+	golFrame();
+};
 
-	if (!board.IsInitialized())
-	{
-		std::cout << "Board not initialized, returning..." << std::endl;
-		return -1;
-	}
+wxIMPLEMENT_APP(golMain);
 
-	printDebugLoop(board);
-
-	return 0;
+bool golMain::OnInit()
+{
+	return false;
 }
+
+golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life")
+{
+
+}
+
+//int main(int argc, char* argv[])
+//{
+//	LifeBoard board;
+//
+//	if (argc == 2)
+//	{
+//		board.ImportImage(argv[1]);
+//	}
+//
+//	if (!board.IsInitialized())
+//	{
+//		std::cout << "Board not initialized, returning..." << std::endl;
+//		return -1;
+//	}
+//
+//	printDebugLoop(board);
+//
+//	return 0;
+//}
 
 void printDebugLoop(LifeBoard& board)
 {

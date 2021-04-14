@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# PDB (Program DataBase) files
+*.pdb
+
 # Visual Studio folders
 /.vs/
 
