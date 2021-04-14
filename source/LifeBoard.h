@@ -12,7 +12,11 @@ public:
 
 	bool IsInitialized();
 
-	bool IsPixelAlive(int x, int y);
+	bool GetPixelStatus(int x, int y);
+	bool SetPixelStatus(int x, int y, bool isAlive);
+
+	int GetWidth();
+	int GetHeight();
 
 private:
 	int width, height, bitsPerPixel;

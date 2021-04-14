@@ -41,8 +41,13 @@ bool LifeBoard::IsInitialized()
 	return true;
 }
 
-bool LifeBoard::IsPixelAlive(int x, int y)
+bool LifeBoard::GetPixelStatus(int x, int y)
 {
+	if (!IsInitialized())
+	{
+		return false;
+	}
+
 	if (x < 0 || x > width)
 	{
 		return false;
@@ -61,4 +66,36 @@ bool LifeBoard::IsPixelAlive(int x, int y)
 	}
 
 	return true;
+}
+
+bool LifeBoard::SetPixelStatus(int x, int y, bool isAlive)
+{
+	if (!IsInitialized())
+	{
+		return false;
+	}
+
+	if (x < 0 || x > width)
+	{
+		return false;
+	}
+
+	if (y < 0 || y > height)
+	{
+		return false;
+	}
+
+	int color = isAlive ? 0 : 255;
+	*(rawData + (y * width + x) * bitsPerPixel) = color;
+	return true;
+}
+
+int LifeBoard::GetWidth()
+{
+	return width;
+}
+
+int LifeBoard::GetHeight()
+{
+	return height;
 }
