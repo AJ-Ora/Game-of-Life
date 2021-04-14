@@ -2,6 +2,7 @@
 #include "LifeBoard.h"
 
 #include <iostream>
+#include <string>
 
 #define STBI_ONLY_BMP
 
@@ -13,31 +14,14 @@
 
 LifeBoard::LifeBoard()
 {
-	int bitsPerPixel;
-	unsigned char* importedData = stbi_load("image.bmp", &width, &height, &bitsPerPixel, 1);
+	storedData = nullptr;
+	width = 0;
+	height = 0;
+}
 
-	if (importedData == nullptr)
-	{
-		std::cout << "Failed to load image!" << std::endl;
-		return;
-	}
-
-	storedData = new bool[width * height];
-
-	for (int i = 0; i < width * height; ++i)
-	{
-		int color = (int)*(importedData + i);
-		if (color < 255 / 2)
-		{
-			storedData[i] = true;
-		}
-		else
-		{
-			storedData[i] = false;
-		}
-	}
-
-	stbi_image_free(importedData);
+LifeBoard::LifeBoard(std::string pathToImage)
+{
+	ImportImage(pathToImage);
 }
 
 LifeBoard::LifeBoard(bool* copyData, int width, int height)
@@ -74,6 +58,35 @@ bool LifeBoard::IsInitialized()
 		return false;
 	}
 	return true;
+}
+
+void LifeBoard::ImportImage(std::string pathToImage)
+{
+	int bitsPerPixel;
+	unsigned char* importedData = stbi_load(pathToImage.c_str(), &width, &height, &bitsPerPixel, 1);
+
+	if (importedData == nullptr)
+	{
+		std::cout << "Failed to load image!" << std::endl;
+		return;
+	}
+
+	storedData = new bool[width * height];
+
+	for (int i = 0; i < width * height; ++i)
+	{
+		int color = (int)*(importedData + i);
+		if (color < 255 / 2)
+		{
+			storedData[i] = true;
+		}
+		else
+		{
+			storedData[i] = false;
+		}
+	}
+
+	stbi_image_free(importedData);
 }
 
 bool LifeBoard::GetPixelStatus(int x, int y)

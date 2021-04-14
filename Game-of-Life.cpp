@@ -10,12 +10,21 @@
 
 void printDebugLoop(LifeBoard& board);
 
-int main()
+int main(int argc, char* argv[])
 {
-	std::cout << "Hello CMake." << std::endl;
-
 	LifeBoard board;
-	
+
+	if (argc == 2)
+	{
+		board.ImportImage(argv[1]);
+	}
+
+	if (!board.IsInitialized())
+	{
+		std::cout << "Board not initialized, returning..." << std::endl;
+		return -1;
+	}
+
 	printDebugLoop(board);
 
 	return 0;
