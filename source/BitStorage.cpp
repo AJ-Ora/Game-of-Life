@@ -11,13 +11,13 @@ BitStorage::BitStorage(int capacity)
 	}
 
 	chunkSize = sizeof(unsigned char) * 8;
-	rawData = new unsigned char[ceil(capacity / chunkSize)];
+	storedData = new unsigned char[ceil(capacity / chunkSize)];
 	length = 0;
 }
 
 BitStorage::~BitStorage()
 {
-	delete[] rawData;
+	delete[] storedData;
 }
 
 bool BitStorage::Get(int index)
@@ -28,7 +28,7 @@ bool BitStorage::Get(int index)
 	}
 
 	int chunk = floor(index / chunkSize);
-	unsigned char byte = *(rawData + chunk);
+	unsigned char byte = *(storedData + chunk);
 	return (byte >> (index - chunk * chunkSize)) & 1;
 }
 
@@ -49,11 +49,11 @@ void BitStorage::Set(int index, bool value)
 
 	if (value == true)
 	{
-		*(rawData + chunk) += valueToSet;
+		*(storedData + chunk) += valueToSet;
 	}
 	else
 	{
-		*(rawData + chunk) -= valueToSet;
+		*(storedData + chunk) -= valueToSet;
 	}
 }
 

@@ -8,6 +8,7 @@ class LifeBoard
 {
 public:
 	LifeBoard();
+	LifeBoard(bool* copyData, int width, int height);
 	~LifeBoard();
 
 	bool IsInitialized();
@@ -18,9 +19,10 @@ public:
 	int GetWidth();
 	int GetHeight();
 
+	bool* storedData;
+
 private:
-	int width, height, bitsPerPixel;
-	unsigned char* rawData;
+	int width, height;
 };
 
 #endif

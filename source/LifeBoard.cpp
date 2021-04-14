@@ -13,28 +13,63 @@
 
 LifeBoard::LifeBoard()
 {
-	rawData = stbi_load("image.bmp", &width, &height, &bitsPerPixel, 1);
+	int bitsPerPixel;
+	unsigned char* importedData = stbi_load("image.bmp", &width, &height, &bitsPerPixel, 1);
 
-	if (rawData == nullptr)
+	if (importedData == nullptr)
 	{
 		std::cout << "Failed to load image!" << std::endl;
 		return;
 	}
+
+	storedData = new bool[width * height];
+
+	for (int i = 0; i < width * height; ++i)
+	{
+		int color = (int)*(importedData + i);
+		if (color < 255 / 2)
+		{
+			storedData[i] = true;
+		}
+		else
+		{
+			storedData[i] = false;
+		}
+	}
+
+	stbi_image_free(importedData);
+}
+
+LifeBoard::LifeBoard(bool* copyData, int width, int height)
+{
+	if (copyData == nullptr)
+	{
+		storedData = nullptr;
+		this->width = 0;
+		this->height = 0;
+		return;
+	}
+
+	int size = width * height;
+	storedData = new bool[size];
+	memcpy_s(storedData, size, copyData, size);
+	this->width = width;
+	this->height = height;
 }
 
 LifeBoard::~LifeBoard()
 {
-	if (rawData == nullptr)
+	if (storedData == nullptr)
 	{
 		return;
 	}
 
-	stbi_image_free(rawData);
+	delete[] storedData;
 }
 
 bool LifeBoard::IsInitialized()
 {
-	if (rawData == nullptr)
+	if (storedData == nullptr)
 	{
 		return false;
 	}
@@ -48,24 +83,17 @@ bool LifeBoard::GetPixelStatus(int x, int y)
 		return false;
 	}
 
-	if (x < 0 || x > width)
+	if (x < 0 || x >= width)
 	{
 		return false;
 	}
 
-	if (y < 0 || y > height) 
+	if (y < 0 || y >= height)
 	{
 		return false;
 	}
 
-	int color = (int)*(rawData + (y * width + x) * bitsPerPixel);
-	std::cout << "Pixel color: " << color << std::endl;
-	if (color > 255 / 2)
-	{
-		return false;
-	}
-
-	return true;
+	return (bool)*(storedData + (y * width + x));
 }
 
 bool LifeBoard::SetPixelStatus(int x, int y, bool isAlive)
@@ -75,18 +103,17 @@ bool LifeBoard::SetPixelStatus(int x, int y, bool isAlive)
 		return false;
 	}
 
-	if (x < 0 || x > width)
+	if (x < 0 || x >= width)
 	{
 		return false;
 	}
 
-	if (y < 0 || y > height)
+	if (y < 0 || y >= height)
 	{
 		return false;
 	}
 
-	int color = isAlive ? 0 : 255;
-	*(rawData + (y * width + x) * bitsPerPixel) = color;
+	*(storedData + (y * width + x)) = isAlive;
 	return true;
 }
 
