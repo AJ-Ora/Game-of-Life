@@ -21,6 +21,7 @@ LifeBoard::LifeBoard()
 
 LifeBoard::LifeBoard(std::string pathToImage)
 {
+	LifeBoard();
 	ImportImage(pathToImage);
 }
 
