@@ -17,6 +17,7 @@ public:
 	bool IsInitialized();
 
 	void ImportImage(std::string pathToImage);
+	unsigned char* ToRGB();
 
 	bool GetPixelStatus(int x, int y);
 	bool SetPixelStatus(int x, int y, bool isAlive);

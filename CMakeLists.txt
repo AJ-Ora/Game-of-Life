@@ -17,6 +17,6 @@ link_directories("${PROJECT_SOURCE_DIR}/lib/vc142_x64_dll")
 add_compile_definitions("UNICODE" "_UNICODE" "wxMSVC_VERSION_AUTO" "WXUSINGDLL")
 
 # Add source to this project's executable.
-add_executable (Game-of-Life WIN32 "Game-of-Life.cpp"  "source/LifeBoard.cpp" "source/LifeBoard.h" "source/LifeBoardLogic.cpp" "source/LifeBoardLogic.h")
+add_executable (Game-of-Life WIN32 "Game-of-Life.cpp"  "source/LifeBoard.cpp" "source/LifeBoard.h" "source/LifeBoardLogic.cpp" "source/LifeBoardLogic.h" "source/DrawBoard.cpp" "source/DrawBoard.h")
 
 # TODO: Add tests and install targets if needed.

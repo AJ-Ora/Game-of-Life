@@ -13,9 +13,9 @@ void LifeBoardLogic::Step(LifeBoard& board)
 {
 	LifeBoard copy(board.storedData, board.GetWidth(), board.GetHeight());
 
-	for (int y = 0; y < board.GetWidth(); ++y)
+	for (int y = 0; y < board.GetHeight(); ++y)
 	{
-		for (int x = 0; x < board.GetHeight(); ++x)
+		for (int x = 0; x < board.GetWidth(); ++x)
 		{
 			// Check the amount of alive neighbors
 			int aliveNeighbors = 0;

@@ -90,6 +90,21 @@ void LifeBoard::ImportImage(std::string pathToImage)
 	stbi_image_free(importedData);
 }
 
+unsigned char* LifeBoard::ToRGB()
+{
+	unsigned char* exportData = new unsigned char[width * height * 3];
+
+	for (int i = 0; i < width * height; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			*(exportData + (i * 3 + j)) = *(storedData + i) ? 0 : 255;
+		}
+	}
+
+	return exportData;
+}
+
 bool LifeBoard::GetPixelStatus(int x, int y)
 {
 	if (!IsInitialized())
