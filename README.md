@@ -1,6 +1,6 @@
 # Conway's Game of Life
 
-Made in C++, using [wxWidgets](https://www.wxwidgets.org/) (version 3.0.5) for GUI rendering and [stb](https://github.com/nothings/stb) for loading images.
+Made in C++ using [wxWidgets](https://www.wxwidgets.org/) (version 3.0.5) for GUI rendering, [stb](https://github.com/nothings/stb) for loading images and [OpenMP](https://www.openmp.org/) for multithreading.
 
 # How to build
 
