@@ -127,9 +127,10 @@ void golFrame::OnImport(wxCommandEvent& evt)
 	this->SetSizer(sizer);
 	
 	std::string printText;
-	printText.append("Successfully imported image. Width: ");
+	printText.append(openFileDialog.GetFilename());
+	printText.append(" | Width: ");
 	printText.append(std::to_string(board.GetWidth()));
-	printText.append("px Height: ");
+	printText.append("px | Height: ");
 	printText.append(std::to_string(board.GetHeight()));
 	printText.append("px");
 
