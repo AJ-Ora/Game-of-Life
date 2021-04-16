@@ -6,6 +6,8 @@ Made in C++, using [wxWidgets](https://www.wxwidgets.org/) (version 3.0.5) for G
 
 ## Windows
 
+### Project tested on: Windows 10 (version 2004)
+
 Clone the project. Do not open it yet!
 
 Locate stable version 3.0.5 of [wxWidgets](https://www.wxwidgets.org/downloads/) (might work with later versions), and download the 64-bit version of the [development files](https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxMSW-3.0.5_vc142_x64_Dev.7z) from pre-built binaries (link provided here points to the Visual Studio 2019 files).
@@ -22,17 +24,17 @@ If you're getting error messages about missing DLLs, go to **"lib -> vc142_x64_d
 
 ## Linux
 
+### Project tested on: Debian 10
+
 Clone the project.
 
 You will need to download [wxWidgets' source code](https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxWidgets-3.0.5.tar.bz2). Extract the downloaded package to any location.
 
-Follow the instructions on [wxWidgets' wiki (Compiling and getting started)](https://wiki.wxwidgets.org/Compiling_and_getting_started), and build a shared (system-wide) library.
+Follow the instructions on [wxWidgets' wiki (Compiling and getting started)](https://wiki.wxwidgets.org/Compiling_and_getting_started) and build a shared (system-wide) library, or read the quick installation instructions listed below.
 
-In short summary:
+Make sure you have **"build-essential"**, **"cmake"**, **"libgtk2.0-dev"** and **"libgtk-3-dev"** installed.
 
-Make sure you have **build-essential**, **cmake**, **libgtk2.0-dev** and **libgtk-3-dev** installed.
-
-Open up a terminal window, and enter these commands in order:
+To build wxWidgets, open up a terminal window, and enter these commands in order:
 
 ```
 cd (location of extracted package)/wxWidgets-3.0.5/
@@ -44,7 +46,7 @@ sudo make install
 sudo ldconfig
 ```
 
-After successfully building wxWidgets, enter these commands in order:
+To build the cloned project, after successfully building wxWidgets, enter these commands in order:
 
 ```
 cd (location of cloned project)/Game-of-Life/
@@ -55,3 +57,17 @@ make
 ```
 
 You should now have **"Game-of-Life"** executable file in the **"out"** folder inside the cloned project's folder!
+
+# Known bugs
+
+## When I load an image, it's really tiny!
+
+Resizing the window fixes it.
+
+## When I load another image after the first one, the program bugs out!
+
+Most likely caused by a memory leak. My bad!
+
+## The loaded image is always shaped like a square!
+
+I'm not sure if this is caused by LifeBoardDrawing.cpp scaling the image wrong, or the wxBoxSizer in Game-of-Life.cpp. Minor issue for now, will fix later.
