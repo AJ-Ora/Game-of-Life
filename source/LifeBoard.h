@@ -4,6 +4,14 @@
 
 #pragma once
 
+/*
+* Implements a way to store a 2-dimensional black-and-white board.
+*
+* Stores data as an array of booleans, which is not ideal because of how booleans work.
+* One boolean is stored in one byte, which is the same size as a char.
+* Due to time restrictions, a better storage solution couldn't be implemented.
+*/
+
 #include <string>
 
 class LifeBoard 
