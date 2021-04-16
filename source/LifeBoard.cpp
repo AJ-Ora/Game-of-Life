@@ -37,7 +37,13 @@ LifeBoard::LifeBoard(bool* copyData, int width, int height)
 
 	int size = width * height;
 	storedData = new bool[size];
+
+#if WIN32
 	memcpy_s(storedData, size, copyData, size);
+#else
+	memcpy(storedData, copyData, size);
+#endif
+
 	this->width = width;
 	this->height = height;
 }
