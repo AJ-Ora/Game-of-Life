@@ -2,18 +2,21 @@
 #include "LifeBoardDrawing.h"
 
 #include <wx/wx.h>
+#include <wx/dcbuffer.h>
 
 LifeBoardDrawing::LifeBoardDrawing(wxWindow* parent, LifeBoard* boardToDraw) : wxPanel(parent)
 {
 	this->Connect(wxEVT_PAINT, wxPaintEventHandler(LifeBoardDrawing::OnPaint));
 	this->Centre();
-	
+
+	SetBackgroundStyle(wxBG_STYLE_PAINT);
+
 	board = boardToDraw;
 }
 
 void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 {
-	wxPaintDC dc(this);
+	wxAutoBufferedPaintDC dc(this);
 
 	if (!board->IsInitialized())
 	{
@@ -21,8 +24,11 @@ void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 		return;
 	}
 
-	int rescaledWidth, rescaledHeight;
-	dc.GetSize(&rescaledWidth, &rescaledHeight);
+	int width, height, rescaledWidth, rescaledHeight;
+	GetClientSize(&width, &height);
+
+	rescaledWidth = width;
+	rescaledHeight = height;
 
 	if (rescaledWidth <= 0 || rescaledHeight <= 0)
 	{
@@ -45,8 +51,10 @@ void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 
 	unsigned char* imageData = board->ToRGB();
 	wxImage image(board->GetWidth(), board->GetHeight(), imageData, true);
-
 	wxBitmap bitmap = wxBitmap(image.Scale(rescaledWidth, rescaledHeight), wxBITMAP_SCREEN_DEPTH);
+
+	dc.SetBackground(wxBrush(GetBackgroundColour()));
+	dc.Clear();
 
 	if (ratio <= 1.0f)
 	{

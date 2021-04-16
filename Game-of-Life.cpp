@@ -83,6 +83,7 @@ golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life", wxDefaultPosit
 	draw = new LifeBoardDrawing(this, &board);
 	sizer->Add(draw, 1, wxSHAPED | wxALIGN_CENTER);
 	this->SetSizer(sizer);
+	draw->Show(false);
 	
 	wxMenu* file = new wxMenu;
 	file->Append(ID_Import, "Import...", "Import an image file to get started.");
@@ -161,6 +162,8 @@ void golFrame::OnImport(wxCommandEvent& evt)
 	printText.append("px");
 
 	SetStatusText(printText);
+	draw->Show(true);
+	sizer->Layout();
 	OnRender();
 }
 
