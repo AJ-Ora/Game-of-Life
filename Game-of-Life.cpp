@@ -124,7 +124,7 @@ void golFrame::OnSize(wxSizeEvent& evt)
 
 void golFrame::OnImport(wxCommandEvent& evt)
 {
-	wxFileDialog openFileDialog(this, _("Import image file"), "", "", ".BMP files (*.bmp)|*.bmp", wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+	wxFileDialog openFileDialog(this, _("Import image file"), "", "", "Portable Network Graphics (*.png)|*.png|Bitmap image file (*.bmp)|*.bmp", wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 
 	if (openFileDialog.ShowModal() == wxID_CANCEL)
 	{
