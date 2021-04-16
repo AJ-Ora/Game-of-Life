@@ -34,7 +34,7 @@ add_executable (Game-of-Life ${MainOrWinMain} "Game-of-Life.cpp"  "source/LifeBo
 
 # Handle copying Windows DLLs to the executable file's directory.
 # The current way of manually copying the files is a very poor way to do this, but I don't know yet how to do it otherwise.
-if (WIN32)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug" AND WIN32)
 	file(COPY ${PROJECT_SOURCE_DIR}/lib/vc142_x64_dll/wxmsw30ud_core_vc142_x64.dll ${PROJECT_SOURCE_DIR}/lib/vc142_x64_dll/wxbase30ud_vc142_x64.dll DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
