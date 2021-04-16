@@ -38,7 +38,12 @@ private:
 	void OnSimulate(wxCommandEvent& evt);
 	void OnStep(wxCommandEvent& evt);
 
-	void OnRender();
+	void OnSimulateActive(wxIdleEvent& evt);
+
+	void DoStep();
+	void DoRender();
+
+	wxMenuItem* simulate;
 
 	LifeBoard board;
 	LifeBoardDrawing* draw;
@@ -79,6 +84,7 @@ bool golMain::OnInit()
 
 golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life", wxDefaultPosition, wxSize(640, 480))
 {
+	simulate = false;
 	sizer = new wxBoxSizer(wxHORIZONTAL);
 	draw = new LifeBoardDrawing(this, &board);
 	sizer->Add(draw, 1, wxSHAPED | wxALIGN_CENTER);
@@ -92,10 +98,8 @@ golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life", wxDefaultPosit
 
 	wxMenu* simulation = new wxMenu;
 
-	// Remove auto-advance feature for now, as it's not implemented yet.
-
-	//simulation->AppendCheckItem(ID_PlayPause, "Auto-advance\tCtrl-Space", "Step the simulation forward automatically.");
-	//simulation->AppendSeparator();
+	simulate = simulation->AppendCheckItem(ID_PlayPause, "Auto-advance\tCtrl-Space", "Step the simulation forward automatically.");
+	simulation->AppendSeparator();
 
 	simulation->Append(ID_Step, "Step\tSpace", "Step the simulation forward by one frame.");
 
@@ -123,7 +127,7 @@ void golFrame::OnSize(wxSizeEvent& evt)
 		return;
 	}
 
-	OnRender();
+	DoRender();
 	evt.Skip();
 }
 
@@ -164,7 +168,7 @@ void golFrame::OnImport(wxCommandEvent& evt)
 	SetStatusText(printText);
 	draw->Show(true);
 	sizer->Layout();
-	OnRender();
+	DoRender();
 }
 
 void golFrame::OnExit(wxCommandEvent& evt)
@@ -174,17 +178,50 @@ void golFrame::OnExit(wxCommandEvent& evt)
 
 void golFrame::OnSimulate(wxCommandEvent& evt)
 {
-	wxLogError("OnSimulate not implemented!");
+	if (!board.IsInitialized())
+	{
+		simulate->Check(false);
+		return;
+	}
+
+	if (simulate->IsChecked())
+	{
+		Connect(wxID_ANY, wxEVT_IDLE, wxIdleEventHandler(golFrame::OnSimulateActive));
+	}
+	else
+	{
+		Disconnect(wxEVT_IDLE, wxIdleEventHandler(golFrame::OnSimulateActive));
+	}
 }
 
 void golFrame::OnStep(wxCommandEvent& evt)
 {
-	LifeBoardLogic logic;
-	logic.Step(board);
-	OnRender();
+	if (simulate->IsChecked())
+	{
+		simulate->Check(false);
+	}
+
+	DoStep();
+	DoRender();
 }
 
-void golFrame::OnRender()
+void golFrame::OnSimulateActive(wxIdleEvent& evt)
+{
+	if (simulate->IsChecked())
+	{
+		DoStep();
+		DoRender();
+		evt.RequestMore();
+	}
+}
+
+void golFrame::DoStep()
+{
+	LifeBoardLogic logic;
+	logic.Step(board);
+}
+
+void golFrame::DoRender()
 {
 	draw->Refresh();
 }
