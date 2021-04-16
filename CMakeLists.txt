@@ -32,7 +32,8 @@ endif()
 # Add source to this project's executable.
 add_executable (Game-of-Life ${MainOrWinMain} "Game-of-Life.cpp"  "source/LifeBoard.cpp" "source/LifeBoard.h" "source/LifeBoardLogic.cpp" "source/LifeBoardLogic.h" "source/LifeBoardDrawing.cpp" "source/LifeBoardDrawing.h")
 
-# Handle copying Windows DLLs to the executable file's directory
+# Handle copying Windows DLLs to the executable file's directory.
+# The current way of manually copying the files is a very poor way to do this, but I don't know yet how to do it otherwise.
 if (WIN32)
 	file(COPY ${PROJECT_SOURCE_DIR}/lib/vc142_x64_dll/wxmsw30ud_core_vc142_x64.dll ${PROJECT_SOURCE_DIR}/lib/vc142_x64_dll/wxbase30ud_vc142_x64.dll DESTINATION ${CMAKE_BINARY_DIR})
 endif()

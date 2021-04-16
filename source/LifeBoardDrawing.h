@@ -4,7 +4,13 @@
 
 #pragma once
 
+/*
+* Implements the functionality to turn LifeBoard data into renderable bitmaps.
+* Not thread safe, but it should never write any data, only read.
+*/
+
 #include <wx/wx.h>
+
 #include "LifeBoard.h"
 
 class LifeBoardDrawing : public wxPanel

@@ -1,14 +1,6 @@
 
 #include "LifeBoardLogic.h"
 
-LifeBoardLogic::LifeBoardLogic()
-{
-}
-
-LifeBoardLogic::~LifeBoardLogic()
-{
-}
-
 void LifeBoardLogic::Step(LifeBoard& board)
 {
 	LifeBoard copy(board.storedData, board.GetWidth(), board.GetHeight());

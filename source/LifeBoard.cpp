@@ -1,7 +1,6 @@
 
 #include "LifeBoard.h"
 
-#include <iostream>
 #include <string>
 
 //#define STBI_ONLY_BMP
@@ -77,7 +76,6 @@ void LifeBoard::ImportImage(std::string pathToImage)
 
 	if (importedData == nullptr)
 	{
-		std::cout << "Failed to load image!" << std::endl;
 		return;
 	}
 

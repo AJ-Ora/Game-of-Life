@@ -1,6 +1,8 @@
 
 #include "LifeBoardDrawing.h"
 
+#include <wx/wx.h>
+
 LifeBoardDrawing::LifeBoardDrawing(wxWindow* parent, LifeBoard* boardToDraw) : wxPanel(parent)
 {
 	this->Connect(wxEVT_PAINT, wxPaintEventHandler(LifeBoardDrawing::OnPaint));
@@ -12,6 +14,13 @@ LifeBoardDrawing::LifeBoardDrawing(wxWindow* parent, LifeBoard* boardToDraw) : w
 void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 {
 	wxPaintDC dc(this);
+
+	if (!board->IsInitialized())
+	{
+		evt.Skip();
+		return;
+	}
+
 	int rescaledWidth, rescaledHeight;
 	dc.GetSize(&rescaledWidth, &rescaledHeight);
 
@@ -29,4 +38,5 @@ void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 	dc.DrawBitmap(bitmap, 0, 0, false);
 
 	delete[] imageData;
+	evt.Skip();
 }

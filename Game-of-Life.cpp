@@ -42,6 +42,7 @@ private:
 
 	LifeBoard board;
 	LifeBoardDrawing* draw;
+	wxBoxSizer* sizer;
 };
 
 /*
@@ -78,7 +79,10 @@ bool golMain::OnInit()
 
 golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life", wxDefaultPosition, wxSize(640, 480))
 {
-	draw = nullptr;
+	sizer = new wxBoxSizer(wxHORIZONTAL);
+	draw = new LifeBoardDrawing(this, &board);
+	sizer->Add(draw, 1, wxSHAPED | wxALIGN_CENTER);
+	this->SetSizer(sizer);
 	
 	wxMenu* file = new wxMenu;
 	file->Append(ID_Import, "Import...", "Import an image file to get started.");
@@ -147,11 +151,6 @@ void golFrame::OnImport(wxCommandEvent& evt)
 		SetStatusText("Failed to import image!");
 		return;
 	}
-
-	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-	draw = new LifeBoardDrawing(this, &board);
-	sizer->Add(draw, 1, wxSHAPED | wxALIGN_CENTER);
-	this->SetSizer(sizer);
 	
 	std::string printText;
 	printText.append(openFileDialog.GetFilename());
@@ -162,6 +161,7 @@ void golFrame::OnImport(wxCommandEvent& evt)
 	printText.append("px");
 
 	SetStatusText(printText);
+	OnRender();
 }
 
 void golFrame::OnExit(wxCommandEvent& evt)
