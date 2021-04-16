@@ -22,7 +22,7 @@ public:
 	virtual bool OnInit();
 };
 
-// Implements main() or WinMain()
+// Implements main() or WinMain(), and enters OnInit() after wxWidgets is initialized.
 wxIMPLEMENT_APP(golMain);
 
 class golFrame : public wxFrame
