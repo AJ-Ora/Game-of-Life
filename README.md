@@ -26,13 +26,11 @@ Clone the project.
 
 You will need to download [wxWidgets' source code](https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxWidgets-3.0.5.tar.bz2). Extract the downloaded package to any location.
 
-Follow the instructions on [wxWidgets' wiki (Compiling and getting started)](https://wiki.wxwidgets.org/Compiling_and_getting_started), and build a shared (system-wide) library.
+Follow the instructions on [wxWidgets' wiki (Compiling and getting started)](https://wiki.wxwidgets.org/Compiling_and_getting_started) and build a shared (system-wide) library, or read the quick installation instructions listed below.
 
-In short summary:
+Make sure you have **"build-essential"**, **"cmake"**, **"libgtk2.0-dev"** and **"libgtk-3-dev"** installed.
 
-Make sure you have **build-essential**, **cmake**, **libgtk2.0-dev** and **libgtk-3-dev** installed.
-
-Open up a terminal window, and enter these commands in order:
+To build wxWidgets, open up a terminal window, and enter these commands in order:
 
 ```
 cd (location of extracted package)/wxWidgets-3.0.5/
@@ -44,7 +42,7 @@ sudo make install
 sudo ldconfig
 ```
 
-After successfully building wxWidgets, enter these commands in order:
+To build the cloned project, after successfully building wxWidgets, enter these commands in order:
 
 ```
 cd (location of cloned project)/Game-of-Life/
