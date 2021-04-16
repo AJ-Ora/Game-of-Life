@@ -57,9 +57,3 @@ make
 ```
 
 You should now have **"Game-of-Life"** executable file in the **"out"** folder inside the cloned project's folder!
-
-# Known bugs
-
-## The loaded image is always shaped like a square!
-
-I'm not sure if this is caused by LifeBoardDrawing.cpp scaling the image wrong, or the wxBoxSizer in Game-of-Life.cpp. Minor issue for now, will fix later.
