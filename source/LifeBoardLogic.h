@@ -10,7 +10,8 @@
 * When using Step(), it creates a local copy of the board,
 * and writes the new information back to the original board.
 * 
-* NOT THREAD SAFE!
+* WARNING! Only use a single logic class
+* to handle a single board at a time!
 */
 
 #include "LifeBoard.h"
