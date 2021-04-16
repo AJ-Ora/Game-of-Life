@@ -84,7 +84,6 @@ bool golMain::OnInit()
 
 golFrame::golFrame() : wxFrame(nullptr, wxID_ANY, "Game of Life", wxDefaultPosition, wxSize(640, 480))
 {
-	simulate = false;
 	sizer = new wxBoxSizer(wxHORIZONTAL);
 	draw = new LifeBoardDrawing(this, &board);
 	sizer->Add(draw, 1, wxSHAPED | wxALIGN_CENTER);
