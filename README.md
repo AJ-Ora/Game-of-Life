@@ -6,6 +6,8 @@ Made in C++, using [wxWidgets](https://www.wxwidgets.org/) (version 3.0.5) for G
 
 ## Windows
 
+### Project tested on: Windows 10 (version 2004)
+
 Clone the project. Do not open it yet!
 
 Locate stable version 3.0.5 of [wxWidgets](https://www.wxwidgets.org/downloads/) (might work with later versions), and download the 64-bit version of the [development files](https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxMSW-3.0.5_vc142_x64_Dev.7z) from pre-built binaries (link provided here points to the Visual Studio 2019 files).
@@ -21,6 +23,8 @@ Select "Game-of-Life.cpp" as the startup item, and build!
 If you're getting error messages about missing DLLs, go to **"lib -> vc142_x64_dll"** and copy **"wxmsw30ud_core_vc142_x64.dll"** and **"wxbase30ud_vc142_x64.dll"** to the same directory where the built program is located at.
 
 ## Linux
+
+### Project tested on: Debian 10
 
 Clone the project.
 
