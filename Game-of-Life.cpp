@@ -1,6 +1,7 @@
 ﻿// Game-of-Life.cpp : Defines the entry point for the application.
 //
 
+#include <chrono>
 #include <string>
 
 #include "wx/wx.h"
@@ -216,8 +217,14 @@ void golFrame::OnSimulateActive(wxIdleEvent& evt)
 
 void golFrame::DoStep()
 {
+	auto startTimer = std::chrono::high_resolution_clock::now();
+
 	LifeBoardLogic logic;
 	logic.Step(board);
+
+	auto endTimer = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double, std::milli> milliseconds = endTimer - startTimer;
+	SetStatusText("Step time: " + std::to_string(milliseconds.count()) + "ms");
 }
 
 void golFrame::DoRender()

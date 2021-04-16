@@ -24,11 +24,8 @@ void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 		return;
 	}
 
-	int width, height, rescaledWidth, rescaledHeight;
-	GetClientSize(&width, &height);
-
-	rescaledWidth = width;
-	rescaledHeight = height;
+	int rescaledWidth, rescaledHeight;
+	GetClientSize(&rescaledWidth, &rescaledHeight);
 
 	if (rescaledWidth <= 0 || rescaledHeight <= 0)
 	{

@@ -5,6 +5,7 @@ void LifeBoardLogic::Step(LifeBoard& board)
 {
 	LifeBoard copy(board.storedData, board.GetWidth(), board.GetHeight());
 
+	#pragma omp parallel for
 	for (int y = 0; y < board.GetHeight(); ++y)
 	{
 		for (int x = 0; x < board.GetWidth(); ++x)
