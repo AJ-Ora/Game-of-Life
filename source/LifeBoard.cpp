@@ -9,8 +9,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb/stb_image_write.h"
+//#define STB_IMAGE_WRITE_IMPLEMENTATION
+//#include "stb/stb_image_write.h"
 
 LifeBoard::LifeBoard()
 {
@@ -21,7 +21,10 @@ LifeBoard::LifeBoard()
 
 LifeBoard::LifeBoard(std::string pathToImage)
 {
-	LifeBoard();
+	storedData = nullptr;
+	width = 0;
+	height = 0;
+
 	ImportImage(pathToImage);
 }
 
