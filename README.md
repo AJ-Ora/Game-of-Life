@@ -57,3 +57,17 @@ make
 ```
 
 You should now have **"Game-of-Life"** executable file in the **"out"** folder inside the cloned project's folder!
+
+# Known bugs
+
+## When I load an image, it's really tiny!
+
+Resizing the window fixes it.
+
+## When I load another image after the first one, the program bugs out!
+
+Most likely caused by a memory leak. My bad!
+
+## The loaded image is always shaped like a square!
+
+I'm not sure if this is caused by LifeBoardDrawing.cpp scaling the image wrong, or the wxBoxSizer in Game-of-Life.cpp. Minor issue for now, will fix later.
