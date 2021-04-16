@@ -1,15 +1,15 @@
 
-#include "DrawBoard.h"
+#include "LifeBoardDrawing.h"
 
-DrawBoard::DrawBoard(wxWindow* parent, LifeBoard* boardToDraw) : wxPanel(parent)
+LifeBoardDrawing::LifeBoardDrawing(wxWindow* parent, LifeBoard* boardToDraw) : wxPanel(parent)
 {
-	this->Connect(wxEVT_PAINT, wxPaintEventHandler(DrawBoard::OnPaint));
+	this->Connect(wxEVT_PAINT, wxPaintEventHandler(LifeBoardDrawing::OnPaint));
 	this->Centre();
 	
 	board = boardToDraw;
 }
 
-void DrawBoard::OnPaint(wxPaintEvent& evt)
+void LifeBoardDrawing::OnPaint(wxPaintEvent& evt)
 {
 	wxPaintDC dc(this);
 	int rescaledWidth, rescaledHeight;
