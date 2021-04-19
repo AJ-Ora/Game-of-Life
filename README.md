@@ -2,6 +2,12 @@
 
 Made in C++ using [wxWidgets](https://www.wxwidgets.org/) (version 3.0.5) for GUI rendering, [stb](https://github.com/nothings/stb) for loading images and [OpenMP](https://www.openmp.org/) for multithreading.
 
+# Features
+
+- Cross-platform (works on Windows and Linux)
+- Smooth, flicker free rendering
+- Multithreading
+
 # How to build
 
 ## Windows
